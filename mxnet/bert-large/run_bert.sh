@@ -1,3 +1,17 @@
+#!/bin/bash
+
+# install gluon-nlp under this dir
+cd /home/cluster/byteps/examples/mxnet/bert-large/gluon-nlp
+python3 setup.py install
+
+# prepare dict 
+mkdir -p /home/cluster/.mxnet/models
+cd /home/cluster/.mxnet/models 
+wget https://apache-mxnet.s3-accelerate.dualstack.amazonaws.com/gluon/dataset/vocab/book_corpus_wiki_en_uncased-a6607397.zip
+apt-get install unzip
+unzip *.zip
+
+# below params are used in T4-16GB, with synthetic data
 export dmlc_num_server=2
 export dmlc_num_worker=2
 export dmlc_ps_root_uri='172.31.21.133'
