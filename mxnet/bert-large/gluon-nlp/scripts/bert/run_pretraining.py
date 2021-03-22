@@ -223,7 +223,7 @@ def init_comm(backend):
         rank = store.rank
         local_rank = 0 # Does ByteScheduler have its rank()?
         is_master_node = rank == local_rank
-        ctxs = [mx.gpu(local_rank)]
+        ctxs = [mx.gpu(int(x)) for x in args.gpus.split(',')]
     else:
         # kvstore
         store = mx.kv.create(backend)
