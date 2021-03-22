@@ -221,7 +221,7 @@ def init_comm(backend):
         store = ScheduledKVStore(store)
         num_workers = store.num_workers
         rank = store.rank
-        local_rank = 0
+        local_rank = 0 # Does ByteScheduler have its rank()?
         is_master_node = rank == local_rank
         ctxs = [mx.gpu(local_rank)]
     else:
